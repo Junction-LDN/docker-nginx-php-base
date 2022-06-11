@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Log in to Docker Hub
-      run: docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
+      run: echo "$DOCKER_PASSWORD" | docker login --username="${DOCKER_USERNAME}" --password-stdin
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKET_HUB_ACCESS_TOKEN }}
