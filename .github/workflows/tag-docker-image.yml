@@ -1,0 +1,29 @@
+name: Docker Image CI
+
+on:
+  push:
+    # Pattern matched against refs/tags
+    tags:        
+      - '*'
+
+jobs:
+
+  build:
+    name: Build and Publish Image
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Log in to Docker Hub
+      run: docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKET_HUB_ACCESS_TOKEN }}
+    - name: Build the Docker image
+      run: docker build -t nginx-php-base . --file Dockerfile 
+    - name: Tag with run number
+      run: docker tag nginx-php-base nginx-php-base:${GITHUB_RUN_NUMBER}
+    - name: Tag with version
+      run: docker tag nginx-php-base nginx-php-base:${GITHUB_REF_NAME}
+    - name: Publish to Docker Hub
+      run: docker push docker.io/junctionldn/nginx-php-base
