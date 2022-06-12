@@ -18,7 +18,7 @@ jobs:
       run: echo "$DOCKER_PASSWORD" | docker login --username="${DOCKER_USERNAME}" --password-stdin
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKET_HUB_ACCESS_TOKEN }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
     - name: Build the Docker image
       run: docker build -t junctionldn/nginx-php-base . --file Dockerfile 
     - name: Tag with run number
