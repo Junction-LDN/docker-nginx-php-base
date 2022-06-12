@@ -14,6 +14,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Docker meta
+      id: meta
+      uses: docker/metadata-action@v4
+      with:
+        images: name/app
     - name: Log in to Docker Hub
       run: echo "$DOCKER_PASSWORD" | docker login --username="${DOCKER_USERNAME}" --password-stdin
       env:
