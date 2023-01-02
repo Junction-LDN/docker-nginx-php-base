@@ -1,7 +1,7 @@
 FROM php:8.2.0-fpm-alpine3.17 as base
 
-ENV NGINX_VERSION 1.22.0
-ENV NJS_VERSION   0.7.4
+ENV NGINX_VERSION 1.22.1
+ENV NJS_VERSION   0.7.9
 ENV PKG_RELEASE   1
 
 ARG NGINX_CONF_FILE=./docker/nginx.conf
@@ -44,7 +44,7 @@ RUN set -x \
         nginx-module-njs=${NGINX_VERSION}.${NJS_VERSION}-r${PKG_RELEASE} \
     " \
     set -x \
-    && KEY_SHA512="e7fa8303923d9b95db37a77ad46c68fd4755ff935d0a534d26eba83de193c76166c68bfe7f65471bf8881004ef4aa6df3e34689c305662750c0172fca5d8552a *stdin" \
+    && KEY_SHA512="de7031fdac1354096d3388d6f711a508328ce66c168967ee0658c294226d6e7a161ce7f2628d577d56f8b63ff6892cc576af6f7ef2a6aa2e17c62ff7b6bf0d98 *stdin" \
     && apk add --no-cache --virtual .cert-deps \
         openssl \
     && wget -O /tmp/nginx_signing.rsa.pub https://nginx.org/keys/nginx_signing.rsa.pub \
