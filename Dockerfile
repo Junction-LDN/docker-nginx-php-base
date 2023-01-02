@@ -1,4 +1,4 @@
-FROM php:8.1-fpm-alpine3.16 as base
+FROM php:8.2.0-fpm-alpine3.17 as base
 
 ENV NGINX_VERSION 1.22.0
 ENV NJS_VERSION   0.7.4
