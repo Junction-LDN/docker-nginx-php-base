@@ -20,6 +20,7 @@ RUN apk update && apk add --no-cache \
 
 # compile native PHP packages
 RUN docker-php-ext-install \
+    exif \
     gd \
     pcntl \
     bcmath \
