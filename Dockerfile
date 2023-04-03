@@ -59,6 +59,14 @@ RUN set -x \
     && apk del .cert-deps \
     && apk add -X "https://nginx.org/packages/alpine/v$(egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release)/main" --no-cache $nginxPackages
 
+RUN echo "# Allow larger headers \
+        fastcgi_buffers 16 32k; \
+        fastcgi_buffer_size 128k; \
+        fastcgi_busy_buffers_size 128k; \
+        proxy_buffer_size   128k; \
+        proxy_buffers   4 256k; \
+        proxy_busy_buffers_size   256k;" >> /etc/nginx/fastcgi_params
+
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
