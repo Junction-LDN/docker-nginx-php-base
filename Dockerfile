@@ -25,7 +25,8 @@ RUN docker-php-ext-install \
     pcntl \
     bcmath \
     mysqli \
-    pdo_mysql
+    pdo_mysql \
+    intl
 
 # configure packages
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
