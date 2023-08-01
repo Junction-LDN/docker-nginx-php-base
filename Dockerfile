@@ -16,7 +16,8 @@ RUN apk update && apk add --no-cache \
     libzip-dev \
     freetype-dev \
     $PHPIZE_DEPS \
-    libjpeg-turbo-dev
+    libjpeg-turbo-dev \
+    icu-dev
 
 # compile native PHP packages
 RUN docker-php-ext-install \
