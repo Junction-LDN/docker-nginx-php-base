@@ -1,8 +1,8 @@
 FROM php:8.4-fpm-alpine3.21 AS base
 
-ENV NGINX_VERSION 1.26.2
-ENV NJS_VERSION   0.8.7
-ENV PKG_RELEASE   1
+ENV NGINX_VERSION=1.30.2
+ENV NJS_VERSION=0.9.9
+ENV PKG_RELEASE=1
 
 ARG NGINX_CONF_FILE=./docker/nginx.conf
 
@@ -43,10 +43,10 @@ RUN pecl install zip && docker-php-ext-enable zip \
 RUN set -x \
     && nginxPackages=" \
         nginx=${NGINX_VERSION}-r${PKG_RELEASE} \
-        nginx-module-xslt=${NGINX_VERSION}-r2 \
-        nginx-module-geoip=${NGINX_VERSION}-r2 \
-        nginx-module-image-filter=${NGINX_VERSION}-r2 \
-        nginx-module-njs=${NGINX_VERSION}.${NJS_VERSION}-r1 \
+        nginx-module-xslt=${NGINX_VERSION}-r${PKG_RELEASE} \
+        nginx-module-geoip=${NGINX_VERSION}-r${PKG_RELEASE} \
+        nginx-module-image-filter=${NGINX_VERSION}-r${PKG_RELEASE} \
+        nginx-module-njs=${NGINX_VERSION}.${NJS_VERSION}-r${PKG_RELEASE} \
     " \
     set -x \
     && KEY_SHA512="de7031fdac1354096d3388d6f711a508328ce66c168967ee0658c294226d6e7a161ce7f2628d577d56f8b63ff6892cc576af6f7ef2a6aa2e17c62ff7b6bf0d98 *stdin" \
